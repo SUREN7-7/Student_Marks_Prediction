@@ -69,7 +69,7 @@ we actually need 3rd arg which represent the line of error, file
 The __init__ method in Python is a special (dunder) method used to initialize an object when it is created. 
 The __str__ method in Python is a special (dunder) method used to return a human-readable string representation of an object.
 
-The os module in Python provides functions to interact with the operating system (Windows, Linux, macOS
+The os module in Python provides functions to interact with the operating system (Windows, Linux, macOS)
 -> Work with files & directories
 -> Execute system commands
 -> Get environment variables
@@ -83,3 +83,5 @@ logging.critical()	Serious issues that require immediate attention		"System cras
 
 check whether logger is working
 #python src/logger.py
+-----------------------------------------------------------------------------------------------------------------
+
