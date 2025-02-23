@@ -25,10 +25,61 @@ CREATING A VENV AND LINKING IT TO GITHUB REPOSITORY:
 	###conda create -p venv python==3.8 -y
 	###conda activate venv/
 
-/git init
-/git add README.md
-/git commit -m "first commit"
-/git branch -M main
-/git remote add origin https://github.com/SUREN7-7/ML_PROJECT.git
-/git push -u origin main
+{	vs code to github repository	}
 
+//git init
+*git add README.md
+*git commit -m "first commit"
+//git branch -M main
+//git remote add origin https://github.com/SUREN7-7/ML_PROJECT.git
+*git push -u origin main
+
+
+{	github repository to vs code	}
+
+*git pull
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+creating 2 files setup.py and requirements.py
+-> so setup.py is a python program which reads the data from text file ie., required packages and install them
+	### pip install -r requirements.txt
+
+The entire project implementation is from src.
+creating components as a floder so that it can be used as a package and be utilized.
+-> Developing a project initially begins with data ingestion which is a part of a module.
+-> data transformation,data_trainer are represented as modules of the package components.
+
+creating a pipeline
+-> train_pipeline (which uses the components)
+-> predict_pipeline
+
+creating logger,exception,utils python files
+logging: Logging is used to track events in a Python application. Instead of using print(), logging provides a better way to debug, monitor, 
+	 and store runtime information.
+exception: it contains UserDefinedException handling code
+utils: It contains the code which can gather data from databases or deploy model in cloud
+
+The sys.exc_info() {exection info}function provides details about the most recent exception that was caught in a try-except block. It returns a tuple with three values:
+->Exception Type – The class of the exception (ZeroDivisionError, ValueError, etc.).
+->Exception Value – The error message or details of the exception.
+->Traceback Object – The traceback, which contains information about where the error occurred.
+we actually need 3rd arg which represent the line of error, file
+
+The __init__ method in Python is a special (dunder) method used to initialize an object when it is created. 
+The __str__ method in Python is a special (dunder) method used to return a human-readable string representation of an object.
+
+The os module in Python provides functions to interact with the operating system (Windows, Linux, macOS
+-> Work with files & directories
+-> Execute system commands
+-> Get environment variables
+-> Manage processes
+
+logging.debug()		Detailed debugging info					"Variable X has value Y"
+logging.info()		General status updates					"Server started"
+logging.warning()	Warnings that might cause issues			"Low disk space"
+logging.error()		Errors that prevent normal execution			"File not found"
+logging.critical()	Serious issues that require immediate attention		"System crash detected!"
+
+check whether logger is working
+#python src/logger.py
