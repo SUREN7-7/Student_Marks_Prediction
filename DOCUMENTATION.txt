@@ -75,13 +75,55 @@ The os module in Python provides functions to interact with the operating system
 -> Get environment variables
 -> Manage processes
 
-logging.debug()		Detailed debugging info					"Variable X has value Y"
-logging.info()		General status updates					"Server started"
-logging.warning()	Warnings that might cause issues			"Low disk space"
-logging.error()		Errors that prevent normal execution			"File not found"
+logging.debug()		Detailed debugging info								"Variable X has value Y"
+logging.info()		General status updates								"Server started"
+logging.warning()	Warnings that might cause issues					"Low disk space"
+logging.error()		Errors that prevent normal execution				"File not found"
 logging.critical()	Serious issues that require immediate attention		"System crash detected!"
 
 check whether logger is working
 #python src/logger.py
 -----------------------------------------------------------------------------------------------------------------
+
+											DATA INGESTION
+
+This Python script is part of a machine learning pipeline. 
+It handles data ingestion and data transformation, with placeholders for model training
+DataIngestionConfig (Configuration Class):
+	Defines paths where raw, training, and testing data will be stored.
+	Uses os.path.join() to construct paths dynamically.
+	Stored under the artifacts/ directory.
+DataIngestion (Main Class):
+	__init__(self)::
+		Initializes an instance of DataIngestionConfig to store file paths.
+	initiate_data_ingestion():
+		This method is responsible for reading the dataset, splitting it into training and testing sets, and saving the files. 
+	makedirs extract the folder artifacts and creates it if not exist 
+	to_csv() creates a df to csv file and saves in the given path ie 1st arg
+----------------------------------------------------------------------------------------------------------------------
+
+											DATA TRANSFORMATION
+
+This module is responsible for preprocessing raw data before it is used for model training. It handles:
+	Handling missing values (imputation)
+	Scaling numerical features
+	Encoding categorical variables
+	Saving the preprocessing object (preprocessor.pkl) for later use.
+	A PKL file is a file saved in the Python pickle format, which contains serialized Python objects. 
+	These files are typically used to store machine learning models, data pre-processing objects, or any Python objects
+DataTransformationConfig (Configuration Class):
+	Defines a configuration class to store the file path for the saved preprocessing object (proprocessor.pkl).
+DataTransformation Class (Main Processing Class):
+	__init__(self):
+		This ensures that all methods inside this class can access the preprocessor.pkl file path
+	get_data_transformer_object():
+		This function creates and returns the preprocessing pipeline, which transforms numerical and categorical data.
+	initiate_data_transformation(train_path, test_path):
+		Reads the train and test CSV files.
+		Prepares data for transformation.
+		Applies preprocessing.
+		Saves the preprocessing object (preprocessor.pkl).
+		Returns processed training & testing arrays.
+		path is obtained in data_ingestion
+		Calls the get_data_transformer_object() function to get the preprocessor pipeline.
 

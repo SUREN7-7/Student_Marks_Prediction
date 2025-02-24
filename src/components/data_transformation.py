@@ -24,7 +24,7 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function si responsible for data trnasformation
+        This function is responsible for data transformation
         
         '''
         try:
@@ -68,7 +68,7 @@ class DataTransformation:
 
             )
 
-            return preprocessor
+            return preprocessor #pipeline object
         
         except Exception as e:
             raise CustomException(e,sys)
@@ -76,32 +76,32 @@ class DataTransformation:
     def initiate_data_transformation(self,train_path,test_path):
 
         try:
-            train_df=pd.read_csv(train_path)
+            train_df=pd.read_csv(train_path)    #Q how to access train_path
             test_df=pd.read_csv(test_path)
 
             logging.info("Read train and test data completed")
 
             logging.info("Obtaining preprocessing object")
 
-            preprocessing_obj=self.get_data_transformer_object()
+            preprocessing_obj=self.get_data_transformer_object()        #pipeline
 
             target_column_name="math score"
             numerical_columns = ["writing score", "reading score"]
 
-            input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
-            target_feature_train_df=train_df[target_column_name]
+            input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)       #X_train (80%) indp
+            target_feature_train_df=train_df[target_column_name]                            #X_test  (20%) indp
 
-            input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
-            target_feature_test_df=test_df[target_column_name]
+            input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)         #y_train (80%) target
+            target_feature_test_df=test_df[target_column_name]                              #y_test  (20%) target
 
             logging.info(
                 f"Applying preprocessing object on training dataframe and testing dataframe."
             )
 
-            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df) #processed 80% training data indp 
+            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)       #processed 20% testing  data indp
 
-            train_arr = np.c_[
+            train_arr = np.c_[  # Column-wise Concatenation
                 input_feature_train_arr, np.array(target_feature_train_df)
             ]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
@@ -110,8 +110,8 @@ class DataTransformation:
 
             save_object(
 
-                file_path=self.data_transformation_config.preprocessor_obj_file_path,
-                obj=preprocessing_obj
+                file_path=self.data_transformation_config.preprocessor_obj_file_path,   #proprocessor.pkl
+                obj=preprocessing_obj   #pipeline obj
 
             )
 
