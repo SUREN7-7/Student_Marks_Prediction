@@ -126,4 +126,19 @@ DataTransformation Class (Main Processing Class):
 		Returns processed training & testing arrays.
 		path is obtained in data_ingestion
 		Calls the get_data_transformer_object() function to get the preprocessor pipeline.
+--------------------------------------------------------------------------------------------------------------------
 
+												MODEL_TRAINER
+
+This function actually decides the best model which has high score and stores the model in "model.pkl" file
+ModelTrainerConfig (Configuration Class):
+	Defines a configuration class to store the file path for the saved model (model.pkl).
+ModelTrainer Class (Main Processing Class):
+	__init__(self):
+		This ensures that all methods inside this class can access the model.pkl file path
+	initiate_model_trainer():
+		splits the data to training and testing datasets
+		consists of models in form of dictionary
+		utils.evaluate_models gives the model report ie the performance of each model
+		there by best score and best model can be determined
+		finally the func return the best r2_score
