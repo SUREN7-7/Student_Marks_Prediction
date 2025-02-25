@@ -75,10 +75,10 @@ The os module in Python provides functions to interact with the operating system
 -> Get environment variables
 -> Manage processes
 
-logging.debug()		Detailed debugging info								"Variable X has value Y"
-logging.info()		General status updates								"Server started"
-logging.warning()	Warnings that might cause issues					"Low disk space"
-logging.error()		Errors that prevent normal execution				"File not found"
+logging.debug()		Detailed debugging info					"Variable X has value Y"
+logging.info()		General status updates					"Server started"
+logging.warning()	Warnings that might cause issues			"Low disk space"
+logging.error()		Errors that prevent normal execution			"File not found"
 logging.critical()	Serious issues that require immediate attention		"System crash detected!"
 
 check whether logger is working
