@@ -83,6 +83,7 @@ logging.critical()	Serious issues that require immediate attention		"System cras
 
 check whether logger is working
 #python src/logger.py
+
 -----------------------------------------------------------------------------------------------------------------
 
 											DATA INGESTION
@@ -100,6 +101,7 @@ DataIngestion (Main Class):
 		This method is responsible for reading the dataset, splitting it into training and testing sets, and saving the files. 
 	makedirs extract the folder artifacts and creates it if not exist 
 	to_csv() creates a df to csv file and saves in the given path ie 1st arg
+
 ----------------------------------------------------------------------------------------------------------------------
 
 											DATA TRANSFORMATION
@@ -126,6 +128,8 @@ DataTransformation Class (Main Processing Class):
 		Returns processed training & testing arrays.
 		path is obtained in data_ingestion
 		Calls the get_data_transformer_object() function to get the preprocessor pipeline.
+	save_object() from utils.py is used to save the path and preprocessor
+
 --------------------------------------------------------------------------------------------------------------------
 
 												MODEL_TRAINER
@@ -142,3 +146,74 @@ ModelTrainer Class (Main Processing Class):
 		utils.evaluate_models gives the model report ie the performance of each model
 		there by best score and best model can be determined
 		finally the func return the best r2_score
+	save_object() is used to save path and best model	
+
+---------------------------------------------------------------------------------------------------------------------
+
+												HYPER PARAMETER TUNING
+It is nothing but providing parameters in the ml model
+It helps in improving the prediction of the model and better accuracy
+Hyper parameters can be assigned either by trail and error method 
+And also modules are provided such as RandomizedSearchCV or GridSearchCV which are used ot calculate the optimal ones
+
+---------------------------------------------------------------------------------------------------------------------
+
+												PREDICT PIPELINE
+CustomData:
+	This fn is generally used to convert the data obtained frm web into a dataframe so that it is eligible for
+	prediction and this is done by the fn get_data_as_data_frame() 
+	This fn finally returns the raw data into df of features
+PredictPipeline:
+	It contains a predict fn which takes the input from web app
+	utils.py is used to load the model and preprocessor
+	Hence preprocessing and prediction is done here
+	The fn returns predicted value
+
+---------------------------------------------------------------------------------------------------------------------
+
+											HTML PAGE
+.This page contains several fields ie features/columns.
+.This uses forms
+.An HTML form is used to collect user input and send it to a server. 
+.It contains form elements like label, text, text fields, radio buttons, checkboxes, dropdowns, and buttons.
+.action="{{ url_for('predict_datapoint') }}"
+.url_for('predict_datapoint') dynamically generates the URL for the predict_datapoint route in a Flask app.
+.This means that when the form is submitted, the data will be sent to the /predict_datapoint route in the Flask backend.
+.POST is used when submitting sensitive or large amounts of data, such as user inputs or predictions.
+=> <form_element>
+=> select is used generate a dropdown 
+=>  class="placeholder"
+	Adds a CSS class for styling (optional).
+	selected
+	Makes this option selected by default when the page loads.
+	disabled
+	Prevents users from selecting this option as a valid input.
+	value=""
+	The value is empty, so it's not sent when submitting the form.
+On submitting the selected values, these values are maped to the fn predict_datapoint() in app.py where 
+processing and prediction is done.
+
+---------------------------------------------------------------------------------------------------------------------
+
+												FLASK APP
+Flask is a lightweight and flexible Python web framework used to build web applications and APIs. 
+It is easy to use and ideal for small to medium-sized projects, including ML model deployment.
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")  # Home route
+def home():
+    return "Hello, Flask!"	#Here we can either return html pages through render_templates(file.html)
+if __name__ == "__main__":
+    app.run(debug=True)		#Used to connect from web, site accessed when app.py is running
+
+Intially http://127.0.0.1:5000
+http://127.0.0.1:5000/ for home page ie index.html
+http://127.0.0.1:5000/predictdata for prediction page
+Methods => get for getting data from web
+		=> post for printing the data in the API
+In this program we connect through html and methods and gather the features 
+These features are converted to df and pree=diction is processed in the predict_pipeline
+This returns predicted value and it is gained in html
+The predicted value is displayed on web page through html by post method.
+
+---------------------------------------------------------------------------------------------------------------------

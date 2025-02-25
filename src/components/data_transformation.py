@@ -110,7 +110,7 @@ class DataTransformation:
 
             save_object(
 
-                file_path=self.data_transformation_config.preprocessor_obj_file_path,   #proprocessor.pkl
+                file_path=self.data_transformation_config.preprocessor_obj_file_path,   #preprocessor.pkl
                 obj=preprocessing_obj   #pipeline obj
 
             )
