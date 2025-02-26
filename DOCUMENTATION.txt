@@ -216,9 +216,4 @@ These features are converted to df and pree=diction is processed in the predict_
 This returns predicted value and it is gained in html
 The predicted value is displayed on web page through html by post method.
 
----------------------------------------------------------------------------------------------------------------------
-
-												pyhton.config
-This file is mainly to tell to the Elastic Beanstalk (AWS Elastic Beanstalk) instance saying that what is the entry point of your application.
-AWS Elastic Beanstalk is a Platform as a Service (PaaS) that makes it easy to deploy, manage, and scale applications on AWS
-It abstracts infrastructure management, allowing developers to focus on coding instead of provisioning servers, networking, and scaling.
+--------------------------------------------------------------------------------------------------------------------
