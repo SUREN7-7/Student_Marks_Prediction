@@ -26,7 +26,6 @@ class DataIngestion:    #Main class
         logging.info("Entered the data ingestion method or component")
         try:
             df=pd.read_csv(r'notebook\data\stud.csv')
-            df.columns = df.columns.str.strip()  # Removes spaces from column names
 
             logging.info('Read the dataset as dataframe')
 

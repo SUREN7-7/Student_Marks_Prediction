@@ -16,7 +16,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
     def __init__(self):
@@ -28,9 +28,14 @@ class DataTransformation:
         
         '''
         try:
-            df = pd.read_csv(r'notebook\data\stud.csv')
-            numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
-            categorical_columns = df.select_dtypes(include=['object']).columns.tolist()
+            numerical_columns = ["reading score","writing score"]
+            categorical_columns = [
+                "gender",
+                "race/ethnicity",
+                "parental level of education",
+                "lunch",
+                "test preparation course"
+            ]
 
             num_pipeline= Pipeline(
                 steps=[
