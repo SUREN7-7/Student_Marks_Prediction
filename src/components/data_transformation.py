@@ -28,14 +28,9 @@ class DataTransformation:
         
         '''
         try:
-            numerical_columns = ["writing score", "reading score"]
-            categorical_columns = [
-                "gender",
-                "race/ethnicity",
-                "parental level of education",
-                "lunch",
-                "test preparation course",
-            ]
+            df = pd.read_csv(r'notebook\data\stud.csv')
+            numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
+            categorical_columns = df.select_dtypes(include=['object']).columns.tolist()
 
             num_pipeline= Pipeline(
                 steps=[
@@ -86,7 +81,6 @@ class DataTransformation:
             preprocessing_obj=self.get_data_transformer_object()        #pipeline
 
             target_column_name="math score"
-            numerical_columns = ["writing score", "reading score"]
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)       #X_train (80%) indp
             target_feature_train_df=train_df[target_column_name]                            #X_test  (20%) indp
