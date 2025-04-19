@@ -22,8 +22,8 @@ END - TO - END MACHINE LEARNING PROJECT
 CREATING A VENV AND LINKING IT TO GITHUB REPOSITORY:
 
 * Create a virtual environment(venv) in ML_PROJECT folder where all the required packages are installed.
-	###conda create -p venv python==3.8 -y
-	###conda activate venv/
+	###python -m venv venv
+	###c.\venv\Scripts\Activate.ps1
 
 {	vs code to github repository	}
 
